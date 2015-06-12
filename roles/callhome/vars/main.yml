@@ -1,1 +1,10 @@
-lia_conf_file: '/opt/emc/scaleio/lia/cfg/conf.txt'
+callhome_conf_file: '/opt/emc/scaleio/callhome/cfg/conf.txt'
+callhome_email_from: scaleio@example.com
+callhome_general_username: monitor
+callhome_general_password: thisismonitor
+callhome_general_customer_name: EMC
+callhome_smtp_host: smtp.example.com
+callhome_smtp_username: callhome
+callhome_smtp_password: callhome123
+callhome_email_alert_email_to: noc@example.com
+callhome_email_alert_severity: Error

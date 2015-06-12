@@ -13,7 +13,6 @@
   - tb
   - gateway
   - lia
-
 #
 # SDS need to happen after MDM's are setup.
 #

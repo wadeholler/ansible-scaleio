@@ -1,6 +1,11 @@
 - set_fact: role_name=callhome
 
-- include: ../../scaleio_headnode.yml
 
-- include: ../../install_scaleio.yml
-
+- ini_file: dest="{{callhome_conf_file}}"
+            section="{{ item.section }}"
+            option="{{ item.option }}"
+            value="{{ item.value }}"
+            backup=true
+  when: item.value != ""
+  with_items: "{{ scaleio_callhome_config }}"
+  notify: restart callhome

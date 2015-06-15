@@ -1,23 +1,58 @@
 --- 
+- name:  set up facts
+  hosts: all
+  tags: common 
+  tasks:
+  - set_fact: scaleio_mdm_headnode_ip="{{ hostvars[groups['mdm'][0]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
+    run_once: true
+  - set_fact: scaleio_mdm_secondary_ip="{{ hostvars[groups['mdm'][1]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
+    run_once: true
+
+- name: Install Common
+  hosts: all
+  tags: common
+  roles: 
+  - common
+# Installing lia seems to break mdm connections, not sure why, leaving disabled for now.
+#  - lia
+
 - name: Configure mdm
   hosts: mdm
+  tags: mdm
   roles:
-  - common
   - mdm
-  - lia
 
 - name: Configure tb
+  tags: tb
   hosts: tb
   roles:
-  - common
   - tb
+
+- name: Configure Gateway
+  hosts: gateway
+  tags: gateway
+  roles:
   - gateway
-  - lia
+
 #
 # SDS need to happen after MDM's are setup.
 #
 - name: Configure sds
+  tags: sds
   hosts: sds
   roles:
-  - common
   - sds
+
+- name: Configure callhome
+  tags: callhome
+  hosts: callhome
+  roles:
+  - callhome
+
+- name: Configure sdc
+  tags: sdc
+  hosts: sdc
+  roles:
+  - sdc
+
+

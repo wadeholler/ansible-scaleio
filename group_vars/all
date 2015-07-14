@@ -1,7 +1,5 @@
 scaleio_license:
-scaleio_interface: em3 
-scaleio_base_package_name: EMC-ScaleIO
-scaleio_version: 1.32-402.1
+scaleio_interface: eth1 
 scaleio_protection_domain: protection_domain1
 scaleio_cluster_mode: true
 scaleio_cluster_name: cluster1

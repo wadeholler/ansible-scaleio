@@ -1,5 +1,6 @@
 - set_fact: role_name=callhome
 
+- include: ../../install_scaleio.yml
 
 - ini_file: dest="{{callhome_conf_file}}"
             section="{{ item.section }}"

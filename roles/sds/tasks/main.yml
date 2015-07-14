@@ -6,6 +6,10 @@
   disk_facts:
   register: disks
 
+- name: use local disk variable
+  when: sds_scaleio_disks
+  set_fact: disks="{{ sds_scaleio_disks }}"
+
 - name: login to mdm
   command: scli --login --mdm_ip {{ scaleio_mdm_headnode_ip }} --username admin --password "{{ scaleio_password }}"
   run_once: true
@@ -18,5 +22,8 @@
   ignore_errors: true
 
 - name: add sds
-  command: scli --add_sds --mdm_ip {{ scaleio_mdm_headnode_ip }} --sds_ip {{ hostvars[inventory_hostname]['ansible_'+scaleio_interface]['ipv4']['address'] }} --storage_pool_name {{ scaleio_storage_pool }} --device_path {{ disks.ansible_available_disks|join(',') }} --sds_name "{{ inventory_hostname}}" --protection_domain_name {{ scaleio_protection_domain }}
+  command: scli --add_sds --mdm_ip {{ scaleio_mdm_headnode_ip }} --sds_ip {{ hostvars[inventory_hostname]['ansible_'+scaleio_interface]['ipv4']['address'] }} --storage_pool_name {{ scaleio_storage_pool }} --device_path {{ sds_scaleio_disks.ansible_available_disks|join(',') }} --sds_name "{{ inventory_hostname}}" --protection_domain_name {{ scaleio_protection_domain }}
+  register: add_sds
+  changed_when: "'already in use' not in add_sds.stderr"
   delegate_to: "{{ scaleio_mdm_headnode_ip }}"
+  ignore_errors: true

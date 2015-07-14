@@ -13,7 +13,8 @@ check:
 	ansible-playbook -i hosts -vvvvv --syntax-check site.yml	
 
 .PHONY:
-test: $(YML)
+test: 
+	ansible-playbook -i hosts  site.yml 
 
 $(YML): %.yml
 	ansible-playbook -i hosts --syntax-check $<

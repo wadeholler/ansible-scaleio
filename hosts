@@ -1,26 +1,24 @@
 [mdm]
-172.17.16.77
-172.17.16.78
+node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222
+node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200
 
 [tb]
-172.17.16.79
+node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201
 
 [sds]
-172.17.16.77
-172.17.16.78
-172.17.16.79
+node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222
+node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200
+node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201
 
 [gateway]
-172.17.16.77
-172.17.16.78
+node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200
+node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201
 
 [callhome]
-172.17.16.77
+node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222
 
 [sdc]
-172.17.16.77
-172.17.16.78
-172.17.16.79
+node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222
+node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200
+node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201
 
-#172.17.16.70
-#172.17.16.71

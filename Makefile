@@ -14,7 +14,7 @@ check:
 
 .PHONY:
 test: 
-	ansible-playbook -i hosts  site.yml 
+	ansible-playbook -u root -i hosts -e "ansible_python_interpreter=/usr/bin/python"  site.yml 
 
 $(YML): %.yml
 	ansible-playbook -i hosts --syntax-check $<

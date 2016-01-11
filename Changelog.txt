@@ -1,0 +1,42 @@
+f3229eb Using inventory_hostname for delegation if ansible host doesn't have access to scaleio network
+3f03126 Changed headnode to primary to be more inline with ScaleIO terminology
+428a831 Merge pull request #4 from wangzhizheng/master
+be94f53 Merge pull request #2 from wangzhizheng/PSDJ
+aa6a4e5 add --mdm_ip option when install
+880b270 Fixed README
+b343093 fixed callhome installation
+5cbe4c9 SDS now support find_disk or local variable
+851eeb4 Removed deprecated variables
+4d55914 Merge branch 'csc-master'
+0fd91db Merged pull request #2
+02a0d03 Working callhome
+fd62535 Merge pull request #3 from jcpowermac/fb/add_more_roles
+1854514 Removing lia, causes issues with mdm
+fb756de Changes to handler
+55c830e Changes to callhome and install_scaleio, adding uninstall
+389df7d missing install_scaleio.yml
+07db3a7 Changes in callhome and created sdc
+3fd9fac Merge pull request #2 from jcpowermac/fb/sds_disk_module
+ce06748 Additional Role changes
+053e213 Adding disk_facts.py module
+cc7ec4e Merge pull request #1 from jcpowermac/fb/modify_roles_plays
+9b26c52 Removed commented out scaleio_headnode.yml
+d5ad1e7 Modifications of roles and plays
+2eeaae5 Merge branch 'master' of https://github.com/sperreault/ansible-scaleio
+4a1cfbc Added LIA
+e886bb9 Merge pull request #1 from jolsenatx/master
+98c294e Corrected syntax
+cdc4a8f Modified the README
+e6b5591 Added lia and gateway roles
+8bd5c22 Fixed up the readme
+2b57ebe Modified the README.md
+032a232 Modified the README.md and added the proper LICENSE
+63017dc Modified the default hosts
+4f6e84b Added current Vagrantfile
+8be8b1c Worked on the sds
+279f6f8 Overhaul of the tie breaker
+18243ff Removed swap file
+0d9f173 Somewhat working config
+16d2462 Somewhat working mdm install
+fd215d6 Initial release
+08f12eb Initial commit

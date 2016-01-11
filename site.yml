@@ -1,62 +1,69 @@
+# vim:ft=ansible:
 --- 
-- name:  set up facts
+- 
   hosts: all
-  tags: common 
-  tasks:
-  - set_fact: scaleio_mdm_primary_ip="{{ hostvars[groups['mdm'][0]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
-    run_once: true
-  - set_fact: scaleio_mdm_primary_hostname="{{ hostvars[groups['mdm'][0]]['inventory_hostname'] }}"
-    run_once: true
-  - set_fact: scaleio_mdm_secondary_ip="{{ hostvars[groups['mdm'][1]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
-    run_once: true
-  - set_fact: scaleio_mdm_secondary_hostname="{{ hostvars[groups['mdm'][1]]['inventory_hostname'] }}"
-    run_once: true
-
-- name: Install Common
-  hosts: all
+  name: "set up facts"
   tags: common
+  tasks: 
+    - 
+      run_once: true
+      set_fact: scaleio_mdm_primary_ip="{{ hostvars[groups['mdm'][0]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
+    - 
+      run_once: true
+      set_fact: scaleio_mdm_primary_hostname="{{ hostvars[groups['mdm'][0]]['inventory_hostname'] }}"
+    - 
+      run_once: true
+      set_fact: scaleio_mdm_secondary_ip="{{ hostvars[groups['mdm'][1]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
+    - 
+      run_once: true
+      set_fact: scaleio_mdm_secondary_hostname="{{ hostvars[groups['mdm'][1]]['inventory_hostname'] }}"
+- 
+  hosts: all
+  name: "Install Common"
   roles: 
-  - common
-# Installing lia seems to break mdm connections, not sure why, leaving disabled for now.
-#  - lia
-
-- name: Configure mdm
+    - common
+  tags: common
+- 
   hosts: mdm
+  name: "Configure mdm"
+  roles: 
+    - mdm
   tags: mdm
-  roles:
-  - mdm
-
-- name: Configure tb
-  tags: tb
+- 
   hosts: tb
-  roles:
-  - tb
-
-- name: Configure Gateway
+  name: "Configure tb"
+  roles: 
+    - tb
+  tags: tb
+- 
   hosts: gateway
+  name: "Configure Gateway"
+  roles: 
+    - gateway
   tags: gateway
-  roles:
-  - gateway
-
-#
-# SDS need to happen after MDM's are setup.
-#
-- name: Configure sds
-  tags: sds
+- 
   hosts: sds
-  roles:
-  - sds
-
-- name: Configure callhome
-  tags: callhome
+  name: "Configure sds"
+  roles: 
+    - sds
+  tags: sds
+- 
   hosts: callhome
-  roles:
-  - callhome
+  name: "Configure callhome"
+  roles: 
+    - callhome
+  tags: callhome
 
-- name: Configure sdc
-  tags: sdc
+-
+  hosts: lia
+  name: "Configure lia"
+  roles:
+    - lia
+  tags: lia
+
+- 
   hosts: sdc
-  roles:
-  - sdc
-
-
+  name: "Configure sdc"
+  roles: 
+    - sdc
+  tags: sdc

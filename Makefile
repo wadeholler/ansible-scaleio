@@ -13,6 +13,10 @@ check:
 	ansible-playbook -i hosts -vvvvv --syntax-check site.yml	
 
 .PHONY:
+changelog:
+	git log --oneline > Changelog.txt
+
+.PHONY:
 test: 
 	ansible-playbook -u root -i hosts -e "ansible_python_interpreter=/usr/bin/python"  site.yml 
 

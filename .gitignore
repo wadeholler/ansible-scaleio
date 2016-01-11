@@ -1,3 +1,2 @@
 *.rpm
-centos7/*
-.vagrant/*
+test/**/.vagrant/*

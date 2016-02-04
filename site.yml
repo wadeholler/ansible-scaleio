@@ -1,56 +1,56 @@
 # vim:ft=ansible:
---- 
-- 
+---
+-
   hosts: all
   name: "set up facts"
   tags: common
-  tasks: 
-    - 
+  tasks:
+    -
       run_once: true
       set_fact: scaleio_mdm_primary_ip="{{ hostvars[groups['mdm'][0]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
-    - 
+    -
       run_once: true
       set_fact: scaleio_mdm_primary_hostname="{{ hostvars[groups['mdm'][0]]['inventory_hostname'] }}"
-    - 
+    -
       run_once: true
       set_fact: scaleio_mdm_secondary_ip="{{ hostvars[groups['mdm'][1]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
-    - 
+    -
       run_once: true
       set_fact: scaleio_mdm_secondary_hostname="{{ hostvars[groups['mdm'][1]]['inventory_hostname'] }}"
-- 
+-
   hosts: all
   name: "Install Common"
-  roles: 
+  roles:
     - common
   tags: common
-- 
+-
   hosts: mdm
   name: "Configure mdm"
-  roles: 
+  roles:
     - mdm
   tags: mdm
-- 
+-
   hosts: tb
   name: "Configure tb"
-  roles: 
+  roles:
     - tb
   tags: tb
-- 
+-
   hosts: gateway
   name: "Configure Gateway"
-  roles: 
+  roles:
     - gateway
   tags: gateway
-- 
+-
   hosts: sds
   name: "Configure sds"
-  roles: 
+  roles:
     - sds
   tags: sds
-- 
+-
   hosts: callhome
   name: "Configure callhome"
-  roles: 
+  roles:
     - callhome
   tags: callhome
 
@@ -61,9 +61,9 @@
     - lia
   tags: lia
 
-- 
+-
   hosts: sdc
   name: "Configure sdc"
-  roles: 
+  roles:
     - sdc
   tags: sdc

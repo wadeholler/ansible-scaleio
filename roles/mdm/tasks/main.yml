@@ -3,7 +3,7 @@
 - name: install pre-requisite packages
   yum: name={{ item }} state=latest
   with_items:
-  - mutt 
+  - mutt
   - bash-completion
   - python
 
@@ -11,7 +11,7 @@
   sysctl: name=kernel.shmmax value=209715200
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "6"
 
-- include: ../../install_scaleio.yml 
+- include: ../../install_scaleio.yml
 
 - name: add primary mdm
   command: scli --add_primary_mdm --primary_mdm_ip {{ scaleio_mdm_primary_ip }} --accept_license
@@ -24,25 +24,25 @@
 - name: wait for mdm to be active
   wait_for: port=6611 state=started
   run_once: true
-  delegate_to: "{{ scaleio_mdm_primary_hostname }}" 
+  delegate_to: "{{ scaleio_mdm_primary_hostname }}"
 
 - name: initial login
   command: scli --login --username admin --password admin
   run_once: true
-  delegate_to: "{{ scaleio_mdm_primary_hostname }}" 
+  delegate_to: "{{ scaleio_mdm_primary_hostname }}"
   ignore_errors: true
   register: initial_login
 
 - name: login with new password
   command: scli --login --username admin --password "{{ scaleio_password }}"
   run_once: true
-  delegate_to: "{{ scaleio_mdm_primary_hostname }}" 
+  delegate_to: "{{ scaleio_mdm_primary_hostname }}"
   when: initial_login.rc == 7
 
 - name: set password
   command: scli --set_password --old_password admin --new_password "{{ scaleio_password }}"
   run_once: true
-  delegate_to: "{{ scaleio_mdm_primary_hostname }}" 
+  delegate_to: "{{ scaleio_mdm_primary_hostname }}"
   when: initial_login.rc == 0
 
 - name: secondary node login
@@ -51,7 +51,7 @@
   delegate_to: "{{ scaleio_mdm_secondary_hostname }}"
 
 - name: add secondary mdm
-  command: scli --add_secondary_mdm --mdm_ip {{ scaleio_mdm_primary_ip }} --secondary_mdm_ip "{{ hostvars[groups['mdm'][1]]['ansible_'+scaleio_interface]['ipv4']['address'] }}" 
+  command: scli --add_secondary_mdm --mdm_ip {{ scaleio_mdm_primary_ip }} --secondary_mdm_ip "{{ hostvars[groups['mdm'][1]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
   run_once: true
   delegate_to: "{{ scaleio_mdm_secondary_hostname }}"
   ignore_errors: true

@@ -9,11 +9,11 @@
 scaleio_nodes = [{:hostname => "node0", :ip => "192.168.33.50"}, {:hostname => "node1", :ip => "192.168.33.51"}, {:hostname => "node2", :ip => "192.168.33.52"}]
 # vagrant box
 #vagrantbox="bento/centos-7.1"
-vagrantbox="centos7_1511"
+vagrantbox="blacklabelops/centos-7.2.1511"
 # vagrant box url
 #vagrantboxurl="https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box"
 #vagrantboxurl="https://atlas.hashicorp.com/bento/boxes/centos-7.1/versions/2.2.2/providers/virtualbox.box"
-vagrantboxurl="file:///Users/sebasp/src/vagrant/package.box"
+vagrantboxurl="https://atlas.hashicorp.com/blacklabelops/boxes/centos-7.2.1511/versions/2016.0110.115149/providers/virtualbox.box"
 # domain
 domain = 'scaleio.local'
 

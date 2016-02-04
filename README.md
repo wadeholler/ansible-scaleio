@@ -23,6 +23,26 @@ ansible-scaleio let's you do the following with ansible and scaleio:
 
 To install ansible-scaleio just clone the repo and see site.yml as a generic playbook. If you are using Vagrant you can actually use the Vagrantfile to launch an environment to play with.
 
+## Requirements
+
+- Hosts should be bootstrapped for ansible usage (have python,...)
+- Root privileges, eg `become: yes`
+
+## Role Variables
+
+
+| Variable | Description | Default value |
+|----------|-------------|---------------|
+| `scaleio_license` | License file *not in use right now* | `""` | 
+| `scaleio_interface` | Backend Interface for scaleio | `"tinydns"` | 
+| `scaleio_protection_domain` | Primary protection domain | `"dnslog"` | 
+| `scaleio_cluster_mode` | Do we want a cluster | `"/var/db/tinydns"` | 
+| `scaleio_cluster_name` |  | `"data"` | 
+| `scaleio_password` | Destination of the data file | `"net_djbdns_tinydns_data_file_dest"` | 
+| `scaleio_gateway_admin_password` | IP Address to listen too | `"127.0.0.1"` | 
+| `scaleio_lia_token` | PID File for tinydns | `"/var/run/tinydns.pid"` | 
+| `scaleio_storage_pool` | Service name  | `"pkgsrc/tinydns"` | 
+| `scaleio_callhome_config` | bundle name | `"tinydns"` | 
 ## Usage Instructions
 
 Customize the roles and playbooks to your environment, you can use this to either to install ScaleIO or just enable the different modules on the nodes.

@@ -6,16 +6,12 @@
   tags: common
   tasks:
     -
-      run_once: true
       set_fact: scaleio_mdm_primary_ip="{{ hostvars[groups['mdm'][0]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
     -
-      run_once: true
       set_fact: scaleio_mdm_primary_hostname="{{ hostvars[groups['mdm'][0]]['inventory_hostname'] }}"
     -
-      run_once: true
       set_fact: scaleio_mdm_secondary_ip="{{ hostvars[groups['mdm'][1]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
     -
-      run_once: true
       set_fact: scaleio_mdm_secondary_hostname="{{ hostvars[groups['mdm'][1]]['inventory_hostname'] }}"
 -
   hosts: all

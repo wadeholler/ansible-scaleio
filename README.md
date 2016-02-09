@@ -4,7 +4,7 @@ ansible-scaleio is a way to manage ScaleIO through [Ansible](http://www.ansible.
 
 ## Description
 
-ansible-scaleio let's you do the following with ansible and scaleio:
+ansible-scaleio let's you do the following with ansible (version 2 is supported) and scaleio:
 
 - Install ScaleIO
 
@@ -21,7 +21,7 @@ ansible-scaleio let's you do the following with ansible and scaleio:
 
 ## Installation
 
-To install ansible-scaleio just clone the repo and see site.yml as a generic playbook. If you are using Vagrant you can actually use the Vagrantfile to launch an environment to play with.
+To install ansible-scaleio just clone the repo and see site.yml as a generic playbook. If you are using Vagrant you can actually use the Vagrantfile in the appropriate tests folder to launch an environment to play with.
 
 ## Requirements
 
@@ -43,6 +43,7 @@ To install ansible-scaleio just clone the repo and see site.yml as a generic pla
 | `scaleio_lia_token` | PID File for tinydns | `"/var/run/tinydns.pid"` | 
 | `scaleio_storage_pool` | Service name  | `"pkgsrc/tinydns"` | 
 | `scaleio_callhome_config` | bundle name | `"tinydns"` | 
+ 
 ## Usage Instructions
 
 Customize the roles and playbooks to your environment, you can use this to either to install ScaleIO or just enable the different modules on the nodes.
@@ -53,6 +54,7 @@ Customize the roles and playbooks to your environment, you can use this to eithe
 ## Future
 - Extend to do more special setup with cache
 - Clean up the code
+- Upgrade between ScaleIO releases.
 
 
 ## Contribution

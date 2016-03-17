@@ -2,7 +2,7 @@
 - set_fact: role_name=gateway
 
 - name: Install pre-requisite java
-  yum: name="java-1.7.0-openjdk-devel" state="present"
+  package: name="java-1.7.0-openjdk-devel" state="present"
 
 - include: ../../install_scaleio.yml
 

@@ -1,0 +1,6 @@
+scaleio_common_packages:
+        - numactl
+        - libaio
+scaleio_mdm_packages:
+        - bash-completion
+        - python

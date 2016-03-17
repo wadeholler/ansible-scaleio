@@ -1,0 +1,32 @@
+# vim:ft=ansible:
+---
+
+- name: copy files
+  unarchive: src="{{ item }}" dest="/var/tmp/" mode="0644"
+  register: file
+  with_fileglob:
+    - "../files/*{{ role_name }}*"
+  when: ansible_distribution == "Ubuntu"
+
+- name: siob_file 
+  find: paths="/var/tmp/" patterns="*{{ role_name }}*.siob"
+  register: siob_file
+  when: ansible_distribution == "Ubuntu"
+
+- name: chmod siob_extract
+  file: path="/var/tmp/siob_extract" mode="0755"
+
+- name: exectute the siob_extract
+  command: /var/tmp/siob_extract "{{ siob_file.files[0].path }}" chdir="/var/tmp"
+  when: ansible_distribution == "Ubuntu"
+
+- name: list the deb file
+  register: package_file
+  find: paths="/var/tmp/" patterns="*{{ role_name }}*.deb"
+  when: ansible_distribution == "Ubuntu"
+
+- name: install package
+  package: deb="{{ package_file.files[0].path }}" state="present"
+  environment:
+    MDM_IP: "{{ scaleio_mdm_secondary_ip }},{{scaleio_mdm_primary_ip}}"
+  when: ansible_distribution == "Ubuntu"

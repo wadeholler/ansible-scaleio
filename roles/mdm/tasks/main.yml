@@ -1,11 +1,11 @@
 - set_fact: role_name=mdm
 
+- name: include vars
+  include_vars: "../../os_vars/{{ ansible_distribution }}.yml"
+
 - name: install pre-requisite packages
-  yum: name={{ item }} state=latest
-  with_items:
-  - mutt
-  - bash-completion
-  - python
+  package: name={{ item }} state=latest
+  with_items: "{{ scaleio_mdm_packages }}"
 
 - name: pre-requisite on rhel6 based os
   sysctl: name=kernel.shmmax value=209715200

@@ -1,29 +1,29 @@
 [mdm]
 node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
-node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200 ansible_python_interpreter=/usr/bin/python
+node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
 
 [tb]
-node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2202 ansible_python_interpreter=/usr/bin/python
 
 [sds]
 node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
-node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200 ansible_python_interpreter=/usr/bin/python
-node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2202 ansible_python_interpreter=/usr/bin/python
 
 [lia]
 node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
-node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200 ansible_python_interpreter=/usr/bin/python
-node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2202 ansible_python_interpreter=/usr/bin/python
 
 [gateway]
-node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200 ansible_python_interpreter=/usr/bin/python
-node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2202 ansible_python_interpreter=/usr/bin/python
 
 [callhome]
 node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
 
 [sdc]
 node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
-node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200 ansible_python_interpreter=/usr/bin/python
-node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2202 ansible_python_interpreter=/usr/bin/python
 

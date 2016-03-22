@@ -5,4 +5,4 @@
 
 - name: install required packages
   package: name="{{ item }}" state=latest
-  with_items: "{{ scaleio_common_packages }}"
+  with_items: scaleio_common_packages

@@ -1,4 +1,5 @@
-- set_fact: role_name=tb
+- set_fact: role_name=mdm
+- set_fact: node_is_manager=0
 
 - include: ../../install_scaleio.yml
 
@@ -8,7 +9,7 @@
   delegate_to: "{{ scaleio_mdm_primary_hostname }}"
 
 - name: add tie breaker
-  command: scli --add_tb --mdm_ip "{{ scaleio_mdm_primary_ip }}" --tb_ip "{{ hostvars[groups['tb'][0]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
+  command: scli --add_standby_mdm --new_mdm_ip "{{ hostvars[groups['tb'][0]]['ansible_'+scaleio_interface]['ipv4']['address'] }}" --mdm_role tb --new_mdm_name  
   run_once: true
   delegate_to: "{{ scaleio_mdm_primary_hostname }}"
   register: add_tb

@@ -1,5 +1,4 @@
-
-- set_fact: tmp_role_name=mdm
+- set_fact: file_glob_name=mdm
 - set_fact: node_is_manager=0
 
 

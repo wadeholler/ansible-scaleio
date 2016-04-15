@@ -1,5 +1,5 @@
 ---
-- set_fact: role_name=gateway
+- set_fact: file_glob_name=gateway
 
 - name: Install pre-requisite java
   package: name="java-1.7.0-openjdk-devel" state="present"

@@ -1,26 +1,49 @@
-- set_fact: role_name=mdm
+
+- set_fact: tmp_role_name=mdm
 - set_fact: node_is_manager=0
 
-- include: ../../install_scaleio.yml
+
+- include: ../../install_scaleio.yml 
+
+
+
 
 - name: login with new password
   command: scli --login --username admin --password "{{ scaleio_password }}"
   run_once: true
   delegate_to: "{{ scaleio_mdm_primary_hostname }}"
 
-- name: add tie breaker
-  command: scli --add_standby_mdm --new_mdm_ip "{{ hostvars[groups['tb'][0]]['ansible_'+scaleio_interface]['ipv4']['address'] }}" --mdm_role tb --new_mdm_name  
+
+- name: add primary tie breaker
+  command: scli --add_standby_mdm --new_mdm_ip "{{ scaleio_tb_primary_ip }}"  --mdm_role tb 
   run_once: true
   delegate_to: "{{ scaleio_mdm_primary_hostname }}"
   register: add_tb
   changed_when: "'single mode' not in add_tb.stderr"
   ignore_errors: true
 
-- name: switch to cluster mode
-  command: scli --switch_to_cluster_mode --mdm_ip "{{ scaleio_mdm_primary_ip }}"
+- name: add secondary tie breaker
+  command: scli --add_standby_mdm --new_mdm_ip "{{ scaleio_tb_secondary_ip }}"  --mdm_role tb
   run_once: true
   delegate_to: "{{ scaleio_mdm_primary_hostname }}"
-  when: "'single mode' not in add_tb.stderr"
+  register: add_tb
+  changed_when: ("'single mode' not in add_tb.stderr") and ({{ scaleio_tb_secondary_ip }} is defined)
+  ignore_errors: true
+
+
+- name: switch to cluster three node
+  command: scli --switch_cluster_mode --cluster_mode "{{ scaleio_cluster_mode }}" --add_slave_mdm_ip  "{{ scaleio_mdm_secondary_ip }}" --add_tb_ip "{{ scaleio_tb_primary_ip }}"
+  run_once: true
+  delegate_to: "{{ scaleio_mdm_primary_hostname }}"
+  when: ("'single mode' not in add_tb.stderr") and  ("{{ scaleio_cluster_mode }}" == "3_node") 
+
+
+- name: switch to cluster five  node
+  command: scli --switch_cluster_mode --cluster_mode "{{ scaleio_cluster_mode }}" --add_slave_mdm_ip  "{{ scaleio_mdm_secondary_ip }}","{{ scaleio_mdm_tertiary_ip }}" --add_tb_ip "{{ scaleio_tb_primary_ip }}","{{ scaleio_tb_secondary_ip }}"
+  run_once: true
+  delegate_to: "{{ scaleio_mdm_primary_hostname }}"
+  when: ("'single mode' not in add_tb.stderr") and  ("{{ scaleio_cluster_mode }}" == "5_node")
+
 
 - name: create the protection domain
   command: scli --add_protection_domain --mdm_ip "{{ scaleio_mdm_primary_ip }}" --protection_domain_name {{ scaleio_protection_domain }}

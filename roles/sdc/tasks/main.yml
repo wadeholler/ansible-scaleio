@@ -1,4 +1,8 @@
 ---
 # tasks file for sdc
-- set_fact: role_name=sdc
+- set_fact: file_glob_name=sdc
 - include: ../../install_scaleio.yml
+
+- name: copy driver_sync.conf into place
+  copy: src=driver_sync.conf dest=/bin/emc/scaleio/scini_sync/driver_sync.conf mode=0644
+

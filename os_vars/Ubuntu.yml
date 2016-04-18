@@ -1,0 +1,7 @@
+scaleio_common_packages:
+        - numactl
+        - libaio1
+        - ldap-utils
+scaleio_mdm_packages:
+        - bash-completion
+        - python2.7

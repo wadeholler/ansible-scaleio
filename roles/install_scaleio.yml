@@ -1,14 +1,11 @@
 # vim:ft=ansible:
 ---
 
-- name: copy files
-  copy: src="{{ item }}" dest="/var/tmp/" mode="0644"
-  register: file
-  with_fileglob:
-    - "../files/*{{ role_name }}*"
+- set_fact: scaleio_mdm_ips="{{ scaleio_mdm_secondary_ip }},{{scaleio_mdm_primary_ip}}"
+  when: scaleio_mdm_tertiary_ip is not defined
 
-- name: install package
-  yum: name="{{ file.results[0].dest }}" state="present"
-  environment:
-    MDM_IP: "{{ scaleio_mdm_secondary_ip }},{{scaleio_mdm_primary_ip}}"
+- set_fact: scaleio_mdm_ips="{{ scaleio_mdm_secondary_ip }},{{scaleio_mdm_primary_ip}},{{scaleio_mdm_tertiary_ip}}"
+  when: scaleio_mdm_tertiary_ip is defined
+
+- include: "install_scaleio_{{ ansible_distribution }}.yml"
 

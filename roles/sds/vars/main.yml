@@ -1,1 +1,2 @@
-sds_scaleio_disks: { ansible_available_disks: ['/home/vagrant/scaleio1'] }
+#sds_scaleio_disks: { ansible_available_disks: ['/home/vagrant/scaleio1'] }
+sds_scaleio_disks: { ansible_available_disks: ['/dev/vdb'] }

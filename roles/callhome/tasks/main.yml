@@ -1,4 +1,4 @@
-- set_fact: role_name=callhome
+- set_fact: file_glob_name=callhome
 
 - include: ../../install_scaleio.yml
 

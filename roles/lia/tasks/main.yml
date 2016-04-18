@@ -1,4 +1,4 @@
-- set_fact: role_name=lia
+- set_fact: file_glob_name=lia
 
 - include: ../../install_scaleio.yml
 

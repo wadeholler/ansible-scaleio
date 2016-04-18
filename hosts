@@ -1,29 +1,48 @@
 [mdm]
-node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
-node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200 ansible_python_interpreter=/usr/bin/python
+#node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
+#node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+sio-1
+sio-2
 
 [tb]
-node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+#node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2202 ansible_python_interpreter=/usr/bin/python
+sio-3
 
 [sds]
-node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
-node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200 ansible_python_interpreter=/usr/bin/python
-node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+#node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
+#node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+#node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2202 ansible_python_interpreter=/usr/bin/python
+sio-1
+sio-2
+sio-3
+sio-4
 
 [lia]
-node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
-node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200 ansible_python_interpreter=/usr/bin/python
-node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+#node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
+#node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+#node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2202 ansible_python_interpreter=/usr/bin/python
+sio-1
+sio-2
+sio-3
+sio-4
 
 [gateway]
-node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200 ansible_python_interpreter=/usr/bin/python
-node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+#node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+#node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2202 ansible_python_interpreter=/usr/bin/python
+#sio-1
+#sio-2
 
 [callhome]
-node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
+#node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
+#sio-1
 
 [sdc]
-node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
-node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200 ansible_python_interpreter=/usr/bin/python
-node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+#node0 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_python_interpreter=/usr/bin/python
+#node1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201 ansible_python_interpreter=/usr/bin/python
+#node2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2202 ansible_python_interpreter=/usr/bin/python
+sio-1
+sio-2
+sio-3
+sio-4
+
 

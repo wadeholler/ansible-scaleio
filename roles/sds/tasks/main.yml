@@ -1,4 +1,5 @@
-- set_fact: role_name=sds
+- set_fact: file_glob_name=sds
+- set_fact: node_is_manager=0
 
 - include: ../../install_scaleio.yml
 

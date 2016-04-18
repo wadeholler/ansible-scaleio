@@ -1,7 +1,7 @@
 scaleio_license:
-scaleio_interface: enp0s8
+scaleio_cluster_mode: "3_node"
+scaleio_interface: eth0
 scaleio_protection_domain: protection_domain1
-scaleio_cluster_mode: true
 scaleio_cluster_name: cluster1
 scaleio_password: Cluster1!
 scaleio_gateway_admin_password: 'Cluster1!'

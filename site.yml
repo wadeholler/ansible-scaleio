@@ -1,50 +1,57 @@
 # vim:ft=ansible:
 ---
--
-  hosts: all
+- hosts: all
   name: "set up facts"
   tags: common
   tasks:
-    -
-      set_fact: scaleio_mdm_primary_ip="{{ hostvars[groups['mdm'][0]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
-    -
-      set_fact: scaleio_mdm_primary_hostname="{{ hostvars[groups['mdm'][0]]['inventory_hostname'] }}"
-    -
-      set_fact: scaleio_mdm_secondary_ip="{{ hostvars[groups['mdm'][1]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
-    -
-      set_fact: scaleio_mdm_secondary_hostname="{{ hostvars[groups['mdm'][1]]['inventory_hostname'] }}"
--
-  hosts: all
+    - set_fact: scaleio_mdm_primary_ip="{{ hostvars[groups['mdm'][0]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
+    - set_fact: scaleio_mdm_primary_hostname="{{ hostvars[groups['mdm'][0]]['inventory_hostname'] }}"
+    - set_fact: scaleio_mdm_secondary_ip="{{ hostvars[groups['mdm'][1]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
+    - set_fact: scaleio_mdm_secondary_hostname="{{ hostvars[groups['mdm'][1]]['inventory_hostname'] }}"
+    - set_fact: scaleio_mdm_tertiary_ip="{{ hostvars[groups['mdm'][2]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
+      when: hostvars[groups['mdm'][2]] is defined
+    - set_fact: scaleio_mdm_tertiary_hostname="{{ hostvars[groups['mdm'][2]]['inventory_hostname'] }}"
+      when: hostvars[groups['mdm'][2]] is defined
+
+    - set_fact: scaleio_tb_primary_ip="{{ hostvars[groups['tb'][0]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
+
+    - set_fact: scaleio_tb_primary_hostname="{{ hostvars[groups['tb'][0]]['inventory_hostname'] }}"
+    - set_fact: scaleio_tb_secondary_ip="{{ hostvars[groups['tb'][1]]['ansible_'+scaleio_interface]['ipv4']['address'] }}"
+      when: hostvars[groups['tb'][1]] is defined
+    - set_fact: scaleio_tb_secondary_hostname="{{ hostvars[groups['tb'][1]]['inventory_hostname'] }}"
+      when: hostvars[groups['tb'][1]] is defined
+
+- hosts: all
   name: "Install Common"
   roles:
     - common
   tags: common
--
-  hosts: mdm
+
+- hosts: mdm
   name: "Configure mdm"
   roles:
     - mdm
   tags: mdm
--
-  hosts: tb
+
+- hosts: tb
   name: "Configure tb"
   roles:
     - tb
   tags: tb
--
-  hosts: gateway
+
+- hosts: gateway
   name: "Configure Gateway"
   roles:
     - gateway
   tags: gateway
--
-  hosts: sds
+
+- hosts: sds
   name: "Configure sds"
   roles:
     - sds
   tags: sds
--
-  hosts: callhome
+
+- hosts: callhome
   name: "Configure callhome"
   roles:
     - callhome
